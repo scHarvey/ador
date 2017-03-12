@@ -190,12 +190,12 @@ speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
 
 
 ### Random Notes
-Test 262
-Joke: Swiss Army Hammer vs Aussie Armie Hammer
-Skunk Works - Nicholas Means
+* Test 262
+* Joke: Swiss Army Hammer vs Aussie Armie Hammer
+* Skunk Works - Nicholas Means
 
 ### Other Links That Came Up in One Session or Another
-https://github.com/mzabriskie/axios
-https://yarnpkg.com/en/
-https://zeit.co/blog/next
-https://www.npmjs.com/package/n  <-- alternative to nvm
+* https://github.com/mzabriskie/axios
+* https://yarnpkg.com/en/
+* https://zeit.co/blog/next
+* https://www.npmjs.com/package/n  <-- alternative to nvm
