@@ -191,7 +191,7 @@ speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
 
 ### Random Notes
 * Test 262
-* Joke: Swiss Army Hammer vs Aussie Armie Hammer
+* Joke: Swiss Army Hammer vs American Armie Hammer
 * Skunk Works - Nicholas Means
 
 ### Other Links That Came Up in One Session or Another
