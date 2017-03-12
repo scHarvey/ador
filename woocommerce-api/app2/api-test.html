@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample API Connection Tester</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="styles/bootstrap.css" >
+</head>
+<body>
+<div id="app" class="container">
+	<h1>Credentials</h1>
+	<form action="" class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">Base URL</label>
+			<div class="col-sm-10">
+				<input class="form-control" type="text" id="name" name="name" v-model="baseUrl" placeholder="/wp-json/wc/v1/">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">Method</label>
+			<div class="col-sm-10">
+				<input class="form-control" type="text" id="name" name="name" v-model="method" placeholder="GET">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">Consumer Key</label>
+			<div class="col-sm-10">
+				<input class="form-control" type="text" id="name" name="name" v-model="consumerKey" placeholder="ck_????????????????????????">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="name">Consumer Secret</label>
+			<div class="col-sm-10">
+				<input class="form-control" type="text" id="name" name="name" v-model="consumerSecret" placeholder="cs_????????????????????????">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-lg btn-primary" @click.prevent="generateUrl( baseUrl, method )">Generate Credentials</button>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input class="form-control" type="text" id="name" name="name" v-model="url" placeholder="http://...">
+				<ul>
+					<li>Request URL: {{ this.url }}</li>
+					<li>oAuth Consumer Key: {{ this.consumerKey }}</li>
+					<li>Signature Method: {{ this.oauthData.oauth_signature_method }}</li>
+					<li>Timestamp: {{ this.oauthData.oauth_timestamp }}</li>
+					<li>Nonce: {{ this.oauthData.oauth_nonce }}</li>
+					<li>Signature: {{ this.oauthData.oauth_signature }}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-lg btn-primary" @click.prevent="testRequest( method, url )">Test Request</button>
+				<button class="btn btn-lg btn-secondary" @click.prevent="response = {}">Clear Response</button>
+			</div>
+
+			<div class="col-sm-offset-2 col-sm-10" style="background:#333; color: #fff; padding: 2em; margin-top: 2em;">
+				{{ this.response }}
+			</div>
+		</div>
+	</form>
+</div>
+<!-- <script src="scripts/r.js"></script> -->
+<script src="scripts/oauth.js"></script>
+<script src="scripts/oauth-signature.js"></script>
+<script src="scripts/jQuery-2-2-4.js"></script>
+<script src="scripts/vue.js"></script>
+<script>
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			'consumerKey' : 'ck_0477f23ed27628b01d8caf7fc64ac7c27e481848',
+			'consumerSecret' : 'cs_21c582e632a1f94af59a358394f45556409d3ac2',
+			'baseUrl' : 'http://ador.dev/wp-json/wc/v1/products/',
+			'method' : 'GET',
+			'oauthData' : {},
+			'url' : 'N/A',
+			'response' : {}
+		},
+
+		methods: {
+			generateUrl( url, method ) {
+
+				this.baseUrl = url;
+				this.method = method;
+
+				var oauth = new OAuth({
+					consumer: {
+						'key': this.consumerKey,
+						'secret': this.consumerSecret
+					},
+					signature_method: 'HMAC-SHA1',
+					hash_function: function( base_string, key ) {
+						return null;
+					}
+				});
+
+				var creds = oauth.authorize({
+					'method': this.method,
+					'url': this.baseUrl
+				});
+
+				var oauthData = {
+					'oauth_consumer_key' : this.consumerKey,
+					'oauth_nonce' : creds.oauth_nonce,
+					'oauth_signature_method' : creds.oauth_signature_method,
+					'oauth_timestamp' : creds.oauth_timestamp,
+				}
+				oauthData.oauth_signature = oauthSignature.generate( method, url, oauthData, oauth.consumer.secret );
+
+				this.oauthData = oauthData;
+
+				this.url = this.baseUrl + '?' + oauth.getParameterString({ 'method': this.method, 'url': this.baseUrl }, oauthData );
+
+				return this.url;
+			},
+
+			testRequest( method, url ) {
+
+				console.log( method, url );
+
+				var data = data || null;
+				var xhr = new XMLHttpRequest();
+				xhr.withCredentials = true;
+
+				xhr.addEventListener( 'readystatechange', function () {
+					if ( this.readyState === 4 ) {
+						app.response = JSON.parse( this.response );
+					}
+				});
+
+				xhr.open( method, url );
+				xhr.setRequestHeader( 'cache-control', 'no-cache' );
+
+				if ( data ) {
+					xhr.setRequestHeader( 'content-type', 'application/json' );
+				}
+
+				xhr.send(data);
+			}
+		}
+	});
+</script>
+</body>
+</html>

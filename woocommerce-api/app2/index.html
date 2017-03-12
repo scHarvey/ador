@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample Orders App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="styles/bootstrap.css" >
+</head>
+<body>
+	<div id="app" class="container">
+		<div class="list-orders" v-if="order.id == null">
+			<h1>View Orders</h1>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Number</th>
+						<th>Date</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Items</th>
+						<th>Total</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="order in orders" @click.prevent="updateModel(order)" style="cursor:pointer;">
+						<td>{{ order.number }}</td>
+						<td>{{ order.date_created }}</td>
+						<td>{{ order.shipping.first_name }}</td>
+						<td>{{ order.shipping.last_name }}</td>
+						<td>{{ order.line_items.length }}</td>
+						<td>{{ order.total }}</td>
+						<td>{{ order.status }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="edit-order" v-if="order.id">
+			<h1>Edit Order: {{ order.number }}</h1>
+
+			<form action="" class="form-horizontal">
+
+				<h3>Purchased Items</h3>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>SKU</th>
+									<th>Quantity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="line_item in order.line_items">
+									<td>{{ line_item.product_id }}</td>
+									<td>{{ line_item.name }}</td>
+									<td>{{ line_item.sku }}</td>
+									<td>{{ line_item.quantity }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<hr/>
+
+				<h3>Order Information</h3>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="status">Order Status</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="status" name="status" v-model="order.status" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="date_created">Order Date</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="date_created" name="date_created" v-model="order.date_created" placeholder="">
+					</div>
+				</div>
+
+				<hr/>
+
+				<h3>Shipping Information</h3>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="first_name">First Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="first_name" name="first_name" v-model="order.shipping.first_name" placeholder="John">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="last_name">Last Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="last_name" name="last_name" v-model="order.shipping.last_name" placeholder="Doe">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="address_1">Address 1</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="address_1" name="address_1" v-model="order.shipping.address_1" placeholder="123 Any St">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="address_2">Address 2</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="address_2" name="address_2" v-model="order.shipping.address_2" placeholder="Apt B">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="city">City</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="city" name="city" v-model="order.shipping.city" placeholder="Anywhere">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="state">State</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="state" name="state" v-model="order.shipping.state" placeholder="ST">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="postcode">Postcode</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="postcode" name="postcode" v-model="order.shipping.postcode" placeholder="12345">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="country">Country</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="country" name="country" v-model="order.shipping.country" placeholder="US">
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-lg btn-primary" @click.prevent="updateOrder">Update Order</button>
+						<button class="btn btn-lg btn-default"@click.prevent="cancelEdit">Cancel</button>
+						<button class="btn btn-lg btn-danger pull-right" @click.prevent="deleteOrder">Delete Order</button>
+					</div>
+				</div>
+
+				<hr/>
+
+				<h3>Order Notes</h3>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Date</th>
+									<th width="70%">Note</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="note in orderNotes">
+									<td>{{ note.id }}</td>
+									<td>{{ note.date_created }}</td>
+									<td width="70%">{{ note.note }}</td>
+									<td><a class="text-danger" href="#nogo" @click.prevent="deleteNote( order.id, note.id )">Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="note">Add Note</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" rows="10" name="note" id="note" v-model="newNote"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-lg btn-primary" @click.prevent="addNote( order.id )">Add Note</button>
+					</div>
+				</div>
+
+
+			</form>
+		</div>
+	</div>
+
+	<script src="scripts/oauth.js"></script>
+	<script src="scripts/oauth-signature.js"></script>
+	<script src="scripts/jQuery-2-2-4.js"></script>
+	<script src="scripts/vue.js"></script>
+
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				// Order Details
+				'orders' : [],
+				'order' : {},
+				'orderNotes' : [],
+				'newNote' : '',
+
+				// Connection Details
+				'consumerKey' : 'ck_45d36719d5429ec72f7ae335eda189440c522c5a',
+				'consumerSecret' : 'cs_04c3a742412555d14a3dd38ea5034d5b7efa9f06',
+				'baseUrl' : 'http://localhost:8888/woocommerce/wp-json/wc/v1/'
+			},
+
+			created: function () {
+				this.getOrders();
+			},
+
+			methods: {
+				updateModel( order ) {
+					this.order = order;
+					this.getOrderNotes( order.id );
+				},
+
+				generateUrl( url, method ) {
+
+					var requestUrl = this.baseUrl + url;
+
+					var oauth = new OAuth({
+						consumer: {
+							'key': this.consumerKey,
+							'secret': this.consumerSecret
+						},
+						signature_method: 'HMAC-SHA1',
+						hash_function: function( base_string, key ) {
+							return null;
+						}
+					});
+
+					var creds = oauth.authorize({
+						'method': method,
+						'url': requestUrl
+					});
+
+					var oauthData = {
+						'oauth_consumer_key' : this.consumerKey,
+						'oauth_nonce' : creds.oauth_nonce,
+						'oauth_signature_method' : creds.oauth_signature_method,
+						'oauth_timestamp' : creds.oauth_timestamp,
+					}
+
+					oauthData.oauth_signature = oauthSignature.generate( method, requestUrl, oauthData, oauth.consumer.secret );
+
+					return requestUrl + '?' + oauth.getParameterString({ 'method': method, 'url': this.baseUrl }, oauthData );
+				},
+
+				getOrders() {
+
+					this.orders = [ { 'name': 'Loading...', 'sku' : '...' } ];
+
+					this.ajaxCallback( this.generateUrl( 'orders/', 'GET' ), 'GET', null, function ( response ) {
+						console.log(response);
+						app.orders = response;
+					});
+				},
+
+				getOrderNotes( id ) {
+					this.ajaxCallback( this.generateUrl( 'orders/' + id + '/notes/', 'GET' ), 'GET', null, function ( response ) {
+						console.log(response);
+						app.orderNotes = response;
+					});
+				},
+
+				updateOrder() {
+					this.ajaxCallback( this.generateUrl( 'orders/' + this.order.id, 'PUT' ), 'PUT', JSON.stringify( this.order ), function ( response ) {
+						console.log(response);
+						if ( 'object' === typeof response ) {
+							app.getOrders();
+							app.order = {};
+						}
+					});
+				},
+
+				addNote( id ) {
+					this.ajaxCallback( this.generateUrl( 'orders/' + id + '/notes', 'POST' ), 'POST', JSON.stringify( { 'note': this.newNote } ), function ( response ) {
+						console.log(response);
+						if ( 'object' === typeof response ) {
+							app.getOrderNotes( id );
+							app.newNote = '';
+						}
+					});
+				},
+
+				deleteNote( orderId, noteId ) {
+
+					if ( ! confirm( "Are you sure you want to delete this note?" ) ) {
+						return;
+					}
+
+					this.ajaxCallback( this.generateUrl( 'orders/' + orderId + '/notes/' + noteId + '/?force=true', 'DELETE' ), 'DELETE', null, function ( response ) {
+						console.log(response);
+						if ( 'object' === typeof response ) {
+							app.getOrderNotes( orderId );
+						}
+					});
+
+				},
+
+				cancelEdit() {
+					this.getOrders();
+					this.order = {};
+				},
+
+				deleteOrder() {
+
+					if ( ! confirm( "Are you sure you want to delete " + this.order.name + "?" ) ) {
+						return;
+					}
+
+					this.ajaxCallback( this.generateUrl( 'orders/' + this.order.id, 'DELETE' ), 'DELETE', null, function ( response ) {
+						console.log(response);
+						if ( 'object' === typeof response ) {
+							app.getOrders();
+							app.order = {};
+						}
+					});
+
+				},
+
+				ajaxCallback( url, method, data, callback ) {
+
+					var data = data || null;
+					var xhr = new XMLHttpRequest();
+					xhr.withCredentials = true;
+
+					xhr.addEventListener( 'readystatechange', function () {
+						if ( this.readyState === 4 ) {
+							callback( JSON.parse( this.response ) );
+						}
+					});
+
+					xhr.open( method, url );
+					xhr.setRequestHeader( 'cache-control', 'no-cache' );
+
+					if ( data ) {
+						xhr.setRequestHeader( 'content-type', 'application/json' );
+					}
+
+					xhr.send(data);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
