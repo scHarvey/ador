@@ -19,3 +19,23 @@ Hey Everyone - Wes here. I'll be your instructor for the react workshop. I need 
 
 If there are any questions, feel free to email me! wes@wesbos.com
 	
+	
+## Additional notes from Wes in react-workshop.md
+
+# Clint's Notes:
+
+# Intro to React.js - Wes Bos - https://twitter.com/wesbos
+## Key Points
+* No Global Scope, so anything you want a child component to have access to must be passed down via props.
+* Component methods, other than render, don’t have access to “this” without binding
+* PropTypes are quite powerful and can strictly type the things you pass to components, down to very specific things, including other Components or particular JSON (see: React.PropTypes.shape -> then describe a JSON object etc) //Google: TypeChecking with PropTypes
+* Routing - generally React-Router is the primary one, but Next.js is interesting: https://zeit.co/blog/next
+* React components have “State” which is the single source of “truth” (not two way data binding like Angular)
+* setState only needs to be sent the items within the state that you want to modify, it's more like “updateState"
+* ES6 backticks fetch(`http://api.react.beer/v2/search?q=${searchTerm}&type=beer`) <— lets you have a variable in a string with ${}
+* Spread, feature in React (soon ES6) “…” when used like <Results { ...this.state }/> it creates “magic” properties for state, in this case
+* shouldComponentRender - can help control how often a component is redrawn
+
+
+## Notes as markdown in /notes or html in /notes-export
+## Working files in /starter-files and finished files are in /finished
