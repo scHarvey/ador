@@ -30,7 +30,7 @@ Conference Notes:
     * register_meta
     * WP_REST_Controller
 
-### [Phil Stugeon](https://twitter.com/philsturgeon) - API Tales of Woe and Woah!
+### [Phil Sturgeon](https://twitter.com/philsturgeon) - API Tales of Woe and Woah!
 * Don't use GET for a delete - crawler might delete all your stuff
 * Be error heavy when developing an API
 * API shouldn't just be an HTTP interface to SQL

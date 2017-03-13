@@ -1,4 +1,4 @@
-# REST API Authentication - Joe Hoyle - http://twitter.com/joe_hoyle
+# REST API Authentication - [Joe Hoyle](http://twitter.com/joe_hoyle)
 
 ## Cookie Based
 * /wp-json/wp/v2/users/me
@@ -34,10 +34,11 @@
 * Helps bootstrap the registration of an OAuth 1 app
 * Requires https://wordpress.org/plugins/rest-api-broker/ plugin
 
+```php
 add_action(‘wp_head’, function(){
     wp_enqueue(‘wp-api’);
 });
-
+```
 ## Relevant Links:
 https://demo.wp-api.org/ (demo:demo)
 https://github.com/wp-api/basic-auth (enables Basic Auth)
