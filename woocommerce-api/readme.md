@@ -1,4 +1,4 @@
-# Woo Commerce REST API - Brian Richards - https://twitter.com/rzen
+# Woo Commerce REST API - [Brian Richards](https://twitter.com/rzen)
 * [Slides](http://wpsessions.com/ador/)
 * [Original Project Files](https://github.com/brichards)
 
