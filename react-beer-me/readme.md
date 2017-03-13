@@ -35,7 +35,7 @@ If there are any questions, feel free to email me! wes@wesbos.com
 * ES6 backticks fetch(`http://api.react.beer/v2/search?q=${searchTerm}&type=beer`) <— lets you have a variable in a string with ${}
 * Spread, feature in React (soon ES6) “…” when used like <Results { ...this.state }/> it creates “magic” properties for state, in this case
 * shouldComponentRender - can help control how often a component is redrawn
-
+* [Next.js](https://zeit.co/blog/next) <-- maybe something to look in to 
 
 ## Notes as markdown in /notes or html in /notes-export
 ## Working files in /starter-files and finished files are in /finished
