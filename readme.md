@@ -8,7 +8,7 @@
 
 Conference Notes:
 
-### [Joe Hoyle](https://twitter.com/joe_hoyle) - Diving into REST API
+### [Joe Hoyle](https://twitter.com/joe_hoyle) - Diving into REST API - [Slides](https://www.dropbox.com/s/apyw8tgqyyq3tdy/Joe_Hoyle_Diving%20into%20the%20REST%20API.pdf?dl=0)
 * Magic "_links" shows relations to the requested object
 * /post/123?_embed returns a richer post object with the relations included in _embedded
 * API has a robust Schema, helps with client side validation, etc
@@ -30,7 +30,7 @@ Conference Notes:
     * register_meta
     * WP_REST_Controller
 
-### [Phil Sturgeon](https://twitter.com/philsturgeon) - API Tales of Woe and Woah!
+### [Phil Sturgeon](https://twitter.com/philsturgeon) - API Tales of Woe and Woah! - [Slides](https://talks.philsturgeon.uk/complete/tales-of-woe-and-woah/#/)
 * Don't use GET for a delete - crawler might delete all your stuff
 * Be error heavy when developing an API
 * API shouldn't just be an HTTP interface to SQL
@@ -46,7 +46,7 @@ Conference Notes:
 * Has new book for front end devs that use APIs
 * GraphUL or GraphQL? Compare to rest
 
-### [Adam Silverstein](https://twitter.com/roundearth) - Backbone - Wordpress REST API
+### [Adam Silverstein](https://twitter.com/roundearth) - Backbone - Wordpress REST API - [Slides](https:/cl.ly/351x2H1X1h1Z)
 * Backbone added in 3.5
 * More and more features, mostly admin, moving to backbone
 * Context:edit if we want rendered content as it requires authentication
@@ -91,7 +91,7 @@ Conference Notes:
 * Tunedin.net
 * Starter themes - React 2016, Us2 hoping to open source WAMU
 
-### [Kelly Dwan](https://twitter.com/ryelle) - Reacting to WordPress
+### [Kelly Dwan](https://twitter.com/ryelle) - Reacting to WordPress - [Slides](https://www.dropbox.com/s/omnxlkdxv2k0yhx/ADOR-2017-ReactWordPress.pdf?dl=0)
 * Virtual dom compared to real Dom only changes are written to DOM
 * Addons
     * Webpack - packager / runner
@@ -113,7 +113,7 @@ Conference Notes:
 * Serverside Rendering -isomorphic
 * Calypso extensions - ryelle.codes/calypso-extensions
 
-### [John Eckman](https://twitter.com/jeckman) (CEO 10up) - 10 REST API Use Cases
+### [John Eckman](https://twitter.com/jeckman) (CEO 10up) - 10 REST API Use Cases - [Slides](https://www.slideshare.net/jeckman/10-rest-api-use-cases-in-10-minutes)
 * Headless - themes/apps not tied to WordPress theme system
     * Pace layering -change front end more often than back end
     * Dynamic applike experience
@@ -140,7 +140,7 @@ Conference Notes:
 * Integration with mobile apps
 * Integration with desktop apps
 
-### [Mel Choyce](https://twitter.com/melchoyce) [personal site](http://melchoyce.design) - a design perspective on rest api
+### [Mel Choyce](https://twitter.com/melchoyce) [personal site](http://melchoyce.design) - a design perspective on rest api - [Slides](https://www.dropbox.com/s/xadpu3rscefwbnw/Mel%20Choyce%20design-perspective-on-the-rest-api.pdf?dl=0)
 * Quartz - neat site
 * Concerns
     * Mobile App Design
@@ -154,11 +154,11 @@ Conference Notes:
         * Early talk about requirements
         * What's easier to do with the API now
 
-### [Petra Raykovsky](https://twitter.com/petyeah) - Great Expectations
+### [Petra Raykovsky](https://twitter.com/petyeah) - Great Expectations - [Slides](http://petya.in/great-expectations-prepare-your-non-developers-for-a-rest-api-project/)
 * Discuss with clients how things will change when you build a site using the rest API.
     * Some admin features they are used to may go away
 
-### [Rachel Baker](https://twitter.com/rachelbaker) - Real Time REST API
+### [Rachel Baker](https://twitter.com/rachelbaker) - Real Time REST API - [Slides](https://speakerdeck.com/rachelbaker/real-time-rest-api-with-wordpress)
 speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
 * How can the client know if anything changes?
     * Cases
@@ -176,10 +176,9 @@ speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
             * Security and auth
             * You now have an RPC api
 
-### [K. Adam White](https://twitter.com/kadamwhite) - API client API design
-* Talks.kadamwhite.com/ador-boston
+### [K. Adam White](https://twitter.com/kadamwhite) - API client API design - [Slides](http://talks.kadamwhite.com/ador-boston)
 
-### [Ben Foxall](https://twitter.com/benjaminbenben) - http kind of sucks
+### [Ben Foxall](https://twitter.com/benjaminbenben) - http kind of sucks - [Slides](https://speakerdeck.com/benfoxall/making-simple-things)
 * Why it sucks
     * Was designed with wires in mind
     * Need to be constantly online
