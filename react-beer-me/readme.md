@@ -20,11 +20,11 @@ Hey Everyone - Wes here. I'll be your instructor for the react workshop. I need 
 If there are any questions, feel free to email me! wes@wesbos.com
 	
 	
-## Additional notes from Wes in react-workshop.md
+## Additional notes from Wes including requirements, etc. [react-workshop.md](react-workshop.md)
 
-# Clint's Notes:
+# My's Notes:
 
-# Intro to React.js - Wes Bos - https://twitter.com/wesbos
+# Intro to React.js - [Wes Bos](https://twitter.com/wesbos)
 ## Key Points
 * No Global Scope, so anything you want a child component to have access to must be passed down via props.
 * Component methods, other than render, don’t have access to “this” without binding

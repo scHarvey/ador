@@ -1,7 +1,14 @@
 # A Day of Rest : Boston
+
+## Workshop Notes
+* [Auth and the WordPress API](auth.md)
+* [WooCommerce API](woocommerce-api/readme.md)
+* [Intro to React](react-beer-me/readme.md)
+
+
 Conference Notes:
 
-### Joe Hoyle - Diving into REST API - https://twitter.com/joe_hoyle
+### [Joe Hoyle](https://twitter.com/joe_hoyle) - Diving into REST API
 * Magic "_links" shows relations to the requested object
 * /post/123?_embed returns a richer post object with the relations included in _embedded
 * API has a robust Schema, helps with client side validation, etc
@@ -23,7 +30,7 @@ Conference Notes:
     * register_meta
     * WP_REST_Controller
 
-### Phil Stugeon - API Tales of Woe and Woah! PyroCMS - https://twitter.com/philsturgeon
+### [Phil Stugeon](https://twitter.com/philsturgeon) - API Tales of Woe and Woah!
 * Don't use GET for a delete - crawler might delete all your stuff
 * Be error heavy when developing an API
 * API shouldn't just be an HTTP interface to SQL
@@ -39,7 +46,7 @@ Conference Notes:
 * Has new book for front end devs that use APIs
 * GraphUL or GraphQL? Compare to rest
 
-### Adam Silverstein - Backbone - Wordpress REST API https://twitter.com/roundearth
+### [Adam Silverstein](https://twitter.com/roundearth) - Backbone - Wordpress REST API
 * Backbone added in 3.5
 * More and more features, mostly admin, moving to backbone
 * Context:edit if we want rendered content as it requires authentication
@@ -84,7 +91,7 @@ Conference Notes:
 * Tunedin.net
 * Starter themes - React 2016, Us2 hoping to open source WAMU
 
-### Kelly Dwan - Reacting to WordPress - https://twitter.com/ryelle
+### [Kelly Dwan](https://twitter.com/ryelle) - Reacting to WordPress
 * Virtual dom compared to real Dom only changes are written to DOM
 * Addons
     * Webpack - packager / runner
@@ -106,7 +113,7 @@ Conference Notes:
 * Serverside Rendering -isomorphic
 * Calypso extensions - ryelle.codes/calypso-extensions
 
-### John Eckman - 10 REST API Use Cases - https://twitter.com/jeckman CEO 10up
+### [John Eckman](https://twitter.com/jeckman) (CEO 10up) - 10 REST API Use Cases
 * Headless - themes/apps not tied to WordPress theme system
     * Pace layering -change front end more often than back end
     * Dynamic applike experience
@@ -133,7 +140,7 @@ Conference Notes:
 * Integration with mobile apps
 * Integration with desktop apps
 
-### Mel Choyce - a design perspective on rest api - https://twitter.com/melchoyce, melchoyce.design
+### [Mel Choyce](https://twitter.com/melchoyce) [personal site](http://melchoyce.design) - a design perspective on rest api
 * Quartz - neat site
 * Concerns
     * Mobile App Design
@@ -147,11 +154,11 @@ Conference Notes:
         * Early talk about requirements
         * What's easier to do with the API now
 
-### Petra Raykovsky - Great Expectations - https://twitter.com/petyeah
+### [Petra Raykovsky](https://twitter.com/petyeah) - Great Expectations
 * Discuss with clients how things will change when you build a site using the rest API.
     * Some admin features they are used to may go away
 
-### Rachel Baker - Real Time REST API -the wirecutter - https://twitter.com/rachelbaker
+### [Rachel Baker](https://twitter.com/rachelbaker) - Real Time REST API
 speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
 * How can the client know if anything changes?
     * Cases
@@ -169,10 +176,10 @@ speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
             * Security and auth
             * You now have an RPC api
 
-### K. Adam White - API client API design - https://twitter.com/kadamwhite
+### [K. Adam White](https://twitter.com/kadamwhite) - API client API design
 * Talks.kadamwhite.com/ador-boston
 
-### Ben Foxall - http kind of sucks -https://twitter.com/benjaminbenben
+### [Ben Foxall](https://twitter.com/benjaminbenben) - http kind of sucks
 * Why it sucks
     * Was designed with wires in mind
     * Need to be constantly online
@@ -189,13 +196,13 @@ speakersdeck.com/RachelBaker/real-time-rest-api-with-wordpress
 * bitly.com/ADORB
 
 
-### Random Notes
+### Random Things from My Notes
 * Test 262
 * Joke: Swiss Army Hammer vs American Armie Hammer
 * Skunk Works - Nicholas Means
 
 ### Other Links That Came Up in One Session or Another
-* https://github.com/mzabriskie/axios
-* https://yarnpkg.com/en/
-* https://zeit.co/blog/next
+* https://github.com/mzabriskie/axios <-- alternative to JQuery AJAX
+* https://yarnpkg.com/en/ <-- alternative/wrapper to NPM
+* https://zeit.co/blog/next <-- don't remember why I noted this
 * https://www.npmjs.com/package/n  <-- alternative to nvm
